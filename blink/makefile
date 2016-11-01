@@ -35,7 +35,7 @@ GCCFLAGS += -march=armv6-m
 GCCFLAGS += -mtune=cortex-m0plus
 GCCFLAGS += -mthumb
 
-# ASMFLAGS += -x assembler-with-cpp
+# ASMFLAGS +=
 
 COMMON_CFLAGS += -g
 COMMON_CFLAGS += -Og

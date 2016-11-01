@@ -1,26 +1,30 @@
-SDK   = ../libs/STM32F0xx_StdPeriph_Lib_V1.5.0
+# ----- DIRECTORIES -----------------------------------------------------------
 
-CMSIS     = $(SDK)/Libraries/CMSIS
-DRIVER    = $(SDK)/Libraries/STM32F0xx_StdPeriph_Driver
-TEMPLATES = $(SDK)/Projects/STM32F0xx_StdPeriph_Templates
+SDK          = ../libs/STM32F0xx_StdPeriph_Lib_V1.5.0
 
-# -----------------------------------------------------------------------------
+CMSIS        = $(SDK)/Libraries/CMSIS
+CMSIS_DEVICE = $(CMSIS)/Device/ST/STM32F0xx
+DRIVER       = $(SDK)/Libraries/STM32F0xx_StdPeriph_Driver
+TEMPLATES    = $(SDK)/Projects/STM32F0xx_StdPeriph_Templates
+
+# ----- SYMBOLS ---------------------------------------------------------------
 
 SYMBOLS += STM32F072
 
-# -----------------------------------------------------------------------------
+# ----- CMSIS -----------------------------------------------------------------
 
 INCLUDE_DIRS += $(CMSIS)/Include
-INCLUDE_DIRS += $(CMSIS)/Device/ST/STM32F0xx/Include
-SOURCE_FILES += $(CMSIS)/Device/ST/STM32F0xx/Source/Templates/gcc_ride7/startup_stm32f072.s
+INCLUDE_DIRS += $(CMSIS_DEVICE)/Include
+SOURCE_FILES += $(CMSIS_DEVICE)/Source/Templates/gcc_ride7/startup_stm32f072.s
+SOURCE_FILES += $(CMSIS_DEVICE)/Source/Templates/system_stm32f0xx.c
+
+# ----- DRIVER ----------------------------------------------------------------
 
 INCLUDE_DIRS += $(DRIVER)/inc
 SOURCE_FILES += $(wildcard $(DRIVER)/src/*.c)
 
-SOURCE_FILES += $(TEMPLATES)/system_stm32f0xx.c
-
-# -----------------------------------------------------------------------------
+# ----- FLAGS -----------------------------------------------------------------
 
 CPPFLAGS += -include "src/config/stm32f0xx_conf.h"
 
-LDFLAGS += -T $(TEMPLATES)/TrueSTUDIO/STM32F072/STM32F072VB_FLASH.ld
+LDFLAGS  += -T $(TEMPLATES)/TrueSTUDIO/STM32F072/STM32F072VB_FLASH.ld

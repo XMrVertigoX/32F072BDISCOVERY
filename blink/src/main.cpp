@@ -10,6 +10,16 @@ GPIO_InitTypeDef GPIO_InitStructure;
 BlinkTask blinkTask(GPIO_InitStructure);
 
 void foo(void *user) {
+    for (;;) {
+        GPIO_SetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
+        GPIO_ResetBits(GPIOC,
+                       GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
+    }
+}
+
+int main() {
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
 
     GPIO_InitStructure.GPIO_Pin =
@@ -21,17 +31,7 @@ void foo(void *user) {
 
     GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-    for (;;) {
-        GPIO_SetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
-        vTaskDelay(500 / portTICK_PERIOD_MS);
-        GPIO_ResetBits(GPIOC,
-                       GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
-        vTaskDelay(500 / portTICK_PERIOD_MS);
-    }
-}
-
-int main() {
-    // xTaskCreate(foo, NULL, 128, NULL, 1, NULL);
+    xTaskCreate(foo, NULL, 128, NULL, 1, NULL);
 
     vTaskStartScheduler();
 }
