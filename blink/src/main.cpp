@@ -1,8 +1,15 @@
-#include "stm32f0xx.h"
+#include <stm32f0xx.h>
+
+#include <FreeRTOS.h>
+#include <task.h>
+
+#include "blinktask.hpp"
 
 GPIO_InitTypeDef GPIO_InitStructure;
 
-int main(void) {
+BlinkTask blinkTask(GPIO_InitStructure);
+
+void foo(void *user) {
     RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
 
     GPIO_InitStructure.GPIO_Pin =
@@ -14,8 +21,17 @@ int main(void) {
 
     GPIO_Init(GPIOC, &GPIO_InitStructure);
 
-    GPIO_SetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
-
-    while (1) {
+    for (;;) {
+        GPIO_SetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
+        GPIO_ResetBits(GPIOC,
+                       GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
+        vTaskDelay(500 / portTICK_PERIOD_MS);
     }
+}
+
+int main() {
+    // xTaskCreate(foo, NULL, 128, NULL, 1, NULL);
+
+    vTaskStartScheduler();
 }

@@ -7,21 +7,23 @@ PROJECT_NAME     = blink
 
 include sdk.mk
 
-SYMBOLS += NDEBUG
+# SYMBOLS += NDEBUG
 
 INCLUDE_DIRS += ../libs
-# SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
-# SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
+SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
+SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
 
-# INCLUDE_DIRS += ../libs/FreeRTOSv9.0.0/FreeRTOS/Source/include
-# INCLUDE_DIRS += ../libs/FreeRTOSv9.0.0/FreeRTOS/Source/portable/GCC/ARM_CM0
-# SOURCE_FILES += $(wildcard ../libs/FreeRTOSv9.0.0/FreeRTOS/Source/*.c)
-# SOURCE_FILES += ../libs/FreeRTOSv9.0.0/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
-# SOURCE_FILES += ../libs/FreeRTOSv9.0.0/FreeRTOS/Source/portable/MemMang/heap_3.c
+INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/include
+INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0
+SOURCE_FILES += $(wildcard ../libs/xXx/thirdparty/FreeRTOS/Source/*.c)
+SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
+SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_3.c
 
 INCLUDE_DIRS += src
 INCLUDE_DIRS += src/config
+
 SOURCE_FILES += src/main.cpp
+SOURCE_FILES += src/blinktask.cpp
 
 # ----- Libraries -------------------------------------------------------------
 
