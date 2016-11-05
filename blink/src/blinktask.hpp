@@ -6,12 +6,12 @@ using namespace xXx;
 
 class BlinkTask : public ArduinoTask {
   public:
-    BlinkTask(GPIO_InitTypeDef &GPIO_InitStructure);
+    BlinkTask();
     virtual ~BlinkTask();
 
     void setup();
     void loop();
 
   private:
-    GPIO_InitTypeDef &_GPIO_InitStructure;
+    GPIO_InitTypeDef _GPIO_InitStructure;
 };
