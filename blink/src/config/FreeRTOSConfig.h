@@ -44,9 +44,9 @@
 #define INCLUDE_xTaskGetHandle               (1)
 #define INCLUDE_xTaskResumeFromISR           (1)
 
-#define vPortSVCHandler(x)                   SVC_Handler(x)
-#define xPortPendSVHandler(x)                PendSV_Handler(x)
-#define xPortSysTickHandler(x)               SysTick_Handler(x)
+#define vPortSVCHandler(expr)                SVC_Handler(expr)
+#define xPortPendSVHandler(expr)             PendSV_Handler(expr)
+#define xPortSysTickHandler(expr)            SysTick_Handler(expr)
 
 // clang-format on
 
