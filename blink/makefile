@@ -16,7 +16,7 @@ SOURCE_FILES += $(wildcard ../libs/xXx/thirdparty/FreeRTOS/Source/*.c)
 # FreeRTOS (Portable)
 INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0
 SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
-SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_5.c
+SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_4.c
 
 INCLUDE_DIRS += ../libs
 SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
