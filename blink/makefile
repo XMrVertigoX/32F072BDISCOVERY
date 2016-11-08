@@ -1,6 +1,5 @@
 # ----- Configuration ---------------------------------------------------------
 
-TOOLCHAIN_PREFIX = arm-none-eabi-
 PROJECT_NAME     = blink
 
 # ----- Source code------------------------------------------------------------
@@ -54,6 +53,8 @@ CXXFLAGS += -std=gnu++14
 # LDFLAGS +=
 
 # ----- Rules -----------------------------------------------------------------
+
+TOOLCHAIN_PREFIX = arm-none-eabi-
 
 include ../libs/xXx/utils/rules.mk
 
