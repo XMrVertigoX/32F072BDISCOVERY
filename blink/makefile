@@ -8,6 +8,11 @@ include sdk.mk
 
 # SYMBOLS += NDEBUG
 
+# xXx
+INCLUDE_DIRS += ../libs
+SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
+SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
+
 # FreeRTOS
 INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/include
 SOURCE_FILES += $(wildcard ../libs/xXx/thirdparty/FreeRTOS/Source/*.c)
@@ -17,15 +22,9 @@ INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0
 SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
 SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_4.c
 
-INCLUDE_DIRS += ../libs
-SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
-SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
-
-
-
+# Project
 INCLUDE_DIRS += src
 INCLUDE_DIRS += src/config
-
 SOURCE_FILES += src/main.cpp
 SOURCE_FILES += src/blinktask.cpp
 
