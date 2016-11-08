@@ -8,7 +8,7 @@
 
 #include "blinktask.hpp"
 
-BlinkTask::BlinkTask() {}
+BlinkTask::BlinkTask() : ArduinoTask(256, 1) {}
 
 BlinkTask::~BlinkTask() {}
 
