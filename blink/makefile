@@ -1,12 +1,12 @@
 # ----- Configuration ---------------------------------------------------------
 
-PROJECT_NAME     = blink
+PROJECT_NAME = blink
 
 # ----- Source code------------------------------------------------------------
 
 include sdk.mk
 
-# SYMBOLS += NDEBUG
+SYMBOLS += NDEBUG
 
 # xXx
 INCLUDE_DIRS += ../libs
@@ -25,8 +25,7 @@ SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_4.c
 # Project
 INCLUDE_DIRS += src
 INCLUDE_DIRS += src/config
-SOURCE_FILES += src/main.cpp
-SOURCE_FILES += src/blinktask.cpp
+SOURCE_FILES += $(wildcard src/*.cpp)
 
 # ----- Libraries -------------------------------------------------------------
 
