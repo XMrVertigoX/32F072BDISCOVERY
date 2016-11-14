@@ -4,10 +4,10 @@
 
 using namespace xXx;
 
-class BlinkTask : public ArduinoTask {
+class BlinkTask2 : public ArduinoTask {
   public:
-    BlinkTask();
-    virtual ~BlinkTask();
+    BlinkTask2();
+    virtual ~BlinkTask2();
 
     void setup();
     void loop();

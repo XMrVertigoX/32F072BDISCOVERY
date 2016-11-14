@@ -1,47 +1,45 @@
-/*
-*****************************************************************************
-**
-**  File        : stm32_flash.ld
-**
-**  Abstract    : Linker script for STM32F072RB Device with
-**                128KByte FLASH, 16KByte RAM
-**
-**                Set heap size, stack size and stack location according
-**                to application requirements.
-**
-**                Set memory bank area and size if external memory is used.
-**
-**  Target      : STMicroelectronics STM32
-**
-**  Environment : Atollic TrueSTUDIO(R)
-**
-**  Distribution: The file is distributed “as is,” without any warranty
-**                of any kind.
-**
-**  (c)Copyright Atollic AB.
-**  You may use this file as-is or modify it according to the needs of your
-**  project. This file may only be built (assembled or compiled and linked)
-**  using the Atollic TrueSTUDIO(R) product. The use of this file together
-**  with other tools than Atollic TrueSTUDIO(R) is not permitted.
-**
-*****************************************************************************
-*/
+/******************************************************************************
+ **
+ **  File        : stm32_flash.ld
+ **
+ **  Abstract    : Linker script for STM32F072RB Device with
+ **                128KByte FLASH, 16KByte RAM
+ **
+ **                Set heap size, stack size and stack location according
+ **                to application requirements.
+ **
+ **                Set memory bank area and size if external memory is used.
+ **
+ **  Target      : STMicroelectronics STM32
+ **
+ **  Environment : Atollic TrueSTUDIO(R)
+ **
+ **  Distribution: The file is distributed "as is", without any warranty
+ **                of any kind.
+ **
+ **  (c)Copyright Atollic AB.
+ **  You may use this file as-is or modify it according to the needs of your
+ **  project. This file may only be built (assembled or compiled and linked)
+ **  using the Atollic TrueSTUDIO(R) product. The use of this file together
+ **  with other tools than Atollic TrueSTUDIO(R) is not permitted.
+ **
+ *****************************************************************************/
 
 /* Entry Point */
 ENTRY(Reset_Handler)
 
 /* Highest address of the user mode stack */
-_estack = 0x20003FFF;    /* end of RAM */
+_estack = 0x20003FFF; /* end of RAM */
 
 /* Generate a link error if heap and stack don't fit into RAM */
-_Min_Heap_Size = 0;      /* required amount of heap  */
-_Min_Stack_Size = 0x400; /* required amount of stack */
+_Min_Heap_Size = 0;  /* required amount of heap  */
+_Min_Stack_Size = 0; /* required amount of stack */
 
 /* Specify the memory areas */
 MEMORY
 {
-FLASH (rx)      : ORIGIN = 0x8000000, LENGTH = 128K
-RAM (xrw)      : ORIGIN = 0x20000000, LENGTH = 16K
+  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 128K
+  RAM (xrw)  : ORIGIN = 0x20000000, LENGTH = 16K
 }
 
 /* Define output sections */

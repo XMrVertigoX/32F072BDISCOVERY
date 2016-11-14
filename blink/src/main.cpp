@@ -4,10 +4,12 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
-#include "blinktask.hpp"
+#include <blinktask1.hpp>
+#include <blinktask2.hpp>
 
 int main() {
-    static BlinkTask blinkTask;
+    static BlinkTask1 blinkTask1;
+    static BlinkTask2 blinkTask2;
 
     vTaskStartScheduler();
 }
