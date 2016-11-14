@@ -2,8 +2,9 @@
 
 SDK    = ../libs/STM32F072B-Discovery_FW_V1.0.1
 
-CMSIS  = $(SDK)/Libraries/CMSIS
-DRIVER = $(SDK)/Libraries/STM32F0xx_StdPeriph_Driver
+CMSIS     = $(SDK)/Libraries/CMSIS
+DRIVER    = $(SDK)/Libraries/STM32F0xx_StdPeriph_Driver
+UTILITIES = $(SDK)/UTILITIES/STM32F072B-Discovery
 
 # ----- SYMBOLS ---------------------------------------------------------------
 
@@ -20,6 +21,11 @@ SOURCE_FILES += $(CMSIS)/Device/Source/Templates/system_stm32f0xx.c
 
 INCLUDE_DIRS += $(DRIVER)/inc
 SOURCE_FILES += $(wildcard $(DRIVER)/src/*.c)
+
+# ----- UTILITIES -------------------------------------------------------------
+
+INCLUDE_DIRS += $(UTILITIES)
+SOURCE_FILES += $(wildcard $(UTILITIES)/*.c)
 
 # ----- FLAGS -----------------------------------------------------------------
 

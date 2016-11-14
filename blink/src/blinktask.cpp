@@ -1,6 +1,8 @@
 #include <stm32f0xx.h>
 #include <stm32f0xx_conf.h>
 
+#include <stm32f072b_discovery.h>
+
 #include <FreeRTOS.h>
 #include <task.h>
 
@@ -13,21 +15,13 @@ BlinkTask::BlinkTask() : ArduinoTask(256, 1) {}
 BlinkTask::~BlinkTask() {}
 
 void BlinkTask::setup() {
-    RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOC, ENABLE);
-
-    _GPIO_InitStructure.GPIO_Pin =
-        GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9;
-    _GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_OUT;
-    _GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
-    _GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
-    _GPIO_InitStructure.GPIO_PuPd  = GPIO_PuPd_NOPULL;
-
-    GPIO_Init(GPIOC, &_GPIO_InitStructure);
+    STM_EVAL_LEDInit(LED3);
+    STM_EVAL_LEDInit(LED4);
 }
 
 void BlinkTask::loop() {
-    GPIO_SetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
     vTaskDelay(500 / portTICK_PERIOD_MS);
-    GPIO_ResetBits(GPIOC, GPIO_Pin_6 | GPIO_Pin_7 | GPIO_Pin_8 | GPIO_Pin_9);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
+
+    STM_EVAL_LEDToggle(LED3);
+    STM_EVAL_LEDToggle(LED4);
 }
