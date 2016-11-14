@@ -71,48 +71,6 @@ uint32_t SystemCoreClock      = 48000000;
 __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0,
                                  1, 2, 3, 4, 6, 7, 8, 9};
 
-static void SetSysClock(void);
-
-/**
-  * @brief  Setup the microcontroller system.
-  *         Initialize the Embedded Flash Interface, the PLL and update the
-  *         SystemCoreClock variable.
-  * @param  None
-  * @retval None
-  */
-void SystemInit(void) {
-    /* Set HSION bit */
-    RCC->CR |= RCC_CR_HSION;
-
-    /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE, MCOSEL[2:0], MCOPRE[2:0] and PLLNODIV bits */
-    RCC->CFGR &= (uint32_t)0x08FFB80C;
-
-    /* Reset HSEON, CSSON and PLLON bits */
-    RCC->CR &= (0xFFFFFFFF - (RCC_CR_HSEON + RCC_CR_CSSON + RCC_CR_PLLON));
-
-    /* Reset HSEBYP bit */
-    RCC->CR &= (0xFFFFFFFF - RCC_CR_HSEBYP);
-
-    /* Reset PLLSRC, PLLXTPRE and PLLMUL[3:0] bits */
-    RCC->CFGR &=
-        (0xFFFFFFFF - (RCC_CFGR_PLLSRC + RCC_CFGR_PLLXTPRE + RCC_CFGR_PLLMUL));
-
-    /* Reset PREDIV1[3:0] bits */
-    RCC->CFGR2 &= (uint32_t)0xFFFFFFF0;
-
-    /* Reset USARTSW[1:0], I2CSW, CECSW and ADCSW bits */
-    RCC->CFGR3 &= (uint32_t)0xFFFFFEAC;
-
-    /* Reset HSI14 bit */
-    RCC->CR2 &= (uint32_t)0xFFFFFFFE;
-
-    /* Disable all interrupts */
-    RCC->CIR = 0x00000000;
-
-    /* Configure the System clock frequency, AHB/APBx prescalers and Flash settings */
-    SetSysClock();
-}
-
 /**
   * @brief  Update SystemCoreClock according to Clock Register Values
   *         The SystemCoreClock variable contains the core clock (HCLK), it can
@@ -149,7 +107,10 @@ void SystemInit(void) {
   * @retval None
   */
 void SystemCoreClockUpdate(void) {
-    uint32_t tmp = 0, pllmull = 0, pllsource = 0, prediv1factor = 0;
+    uint32_t tmp           = 0;
+    uint32_t pllmull       = 0;
+    uint32_t pllsource     = 0;
+    uint32_t prediv1factor = 0;
 
     /* Get SYSCLK source -------------------------------------------------------*/
     tmp = RCC->CFGR & RCC_CFGR_SWS;
@@ -195,12 +156,12 @@ void SystemCoreClockUpdate(void) {
   * @param  None
   * @retval None
   */
-static void SetSysClock(void) {
+static void setSysClock(void) {
     __IO uint32_t StartUpCounter = 0, HSEStatus = 0;
 
     /* SYSCLK, HCLK, PCLK configuration ----------------------------------------*/
     /* Enable HSE */
-    RCC->CR |= ((uint32_t)RCC_CR_HSEON);
+    RCC->CR |= (RCC_CR_HSEON);
 
     /* Wait till HSE is ready and if Time out is reached exit */
     do {
@@ -248,4 +209,46 @@ static void SetSysClock(void) {
     } else { /* If HSE fails to start-up, the application will have wrong clock
          configuration. User can add here some code to deal with this error */
     }
+}
+
+/**
+  * @brief  Setup the microcontroller system.
+  *         Initialize the Embedded Flash Interface, the PLL and update the
+  *         SystemCoreClock variable.
+  * @param  None
+  * @retval None
+  */
+void SystemInit(void) {
+    /* Set HSION bit */
+    RCC->CR |= RCC_CR_HSION;
+
+    /* Reset SW[1:0], HPRE[3:0], PPRE[2:0], ADCPRE, MCOSEL[2:0], MCOPRE[2:0] and PLLNODIV bits */
+    // RCC->CFGR &= (uint32_t)0x08FFB80C;
+    RCC->CFGR &=
+        ~(RCC_CFGR_SW + RCC_CFGR_HPRE + RCC_CFGR_PPRE + RCC_CFGR_ADCPRE +
+          RCC_CFGR_MCO_PLL + RCC_CFGR_MCO_PRE + RCC_CFGR_PLLNODIV);
+
+    /* Reset HSEON, CSSON and PLLON bits */
+    RCC->CR &= ~(RCC_CR_HSEON + RCC_CR_CSSON + RCC_CR_PLLON);
+
+    /* Reset HSEBYP bit */
+    RCC->CR &= ~(RCC_CR_HSEBYP);
+
+    /* Reset PLLSRC, PLLXTPRE and PLLMUL[3:0] bits */
+    RCC->CFGR &= ~(RCC_CFGR_PLLSRC + RCC_CFGR_PLLXTPRE + RCC_CFGR_PLLMUL);
+
+    /* Reset PREDIV1[3:0] bits */
+    RCC->CFGR2 &= ~(RCC_CFGR2_PREDIV1);
+
+    /* Reset USARTSW[1:0], I2CSW, CECSW and ADCSW bits */
+    RCC->CFGR3 &= ~(RCC_CFGR3_USART1SW + RCC_CFGR3_I2C1SW + RCC_CFGR3_CECSW +
+                    RCC_CFGR3_ADCSW);
+
+    /* Reset HSI14 bit */
+    RCC->CR2 &= ~(RCC_CR2_HSI14ON);
+
+    /* Disable all interrupts */
+    RCC->CIR = 0x00000000;
+
+    setSysClock();
 }
