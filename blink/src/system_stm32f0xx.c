@@ -90,23 +90,7 @@ uint32_t SystemCoreClock      = 48000000;
 __I uint8_t AHBPrescTable[16] = {0, 0, 0, 0, 0, 0, 0, 0,
                                  1, 2, 3, 4, 6, 7, 8, 9};
 
-/**
-  * @}
-  */
-
-/** @addtogroup STM32F0xx_System_Private_FunctionPrototypes
-  * @{
-  */
-
 static void SetSysClock(void);
-
-/**
-  * @}
-  */
-
-/** @addtogroup STM32F0xx_System_Private_Functions
-  * @{
-  */
 
 /**
   * @brief  Setup the microcontroller system.
@@ -123,22 +107,22 @@ void SystemInit(void) {
     RCC->CFGR &= (uint32_t)0xF8FFB80C;
 
     /* Reset HSEON, CSSON and PLLON bits */
-    RCC->CR &= (uint32_t)0xFEF6FFFF;
+    RCC->CR &= ~(RCC_CR_HSEON + RCC_CR_CSSON + RCC_CR_PLLON);
 
     /* Reset HSEBYP bit */
-    RCC->CR &= (uint32_t)0xFFFBFFFF;
+    RCC->CR &= ~(RCC_CR_HSEBYP);
 
     /* Reset PLLSRC, PLLXTPRE and PLLMUL[3:0] bits */
     RCC->CFGR &= (uint32_t)0xFFC0FFFF;
 
     /* Reset PREDIV1[3:0] bits */
-    RCC->CFGR2 &= (uint32_t)0xFFFFFFF0;
+    RCC->CFGR2 &= ~(RCC_CFGR2_PREDIV1);
 
     /* Reset USARTSW[1:0], I2CSW, CECSW and ADCSW bits */
     RCC->CFGR3 &= (uint32_t)0xFFFFFEAC;
 
     /* Reset HSI14 bit */
-    RCC->CR2 &= (uint32_t)0xFFFFFFFE;
+    RCC->CR2 &= ~(RCC_CR2_HSI14ON);
 
     /* Disable all interrupts */
     RCC->CIR = 0x00000000;
