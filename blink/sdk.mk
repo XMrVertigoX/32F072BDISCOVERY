@@ -4,7 +4,7 @@ SDK    = ../libs/STM32F072B-Discovery_FW_V1.0.1
 
 CMSIS     = $(SDK)/Libraries/CMSIS
 DRIVER    = $(SDK)/Libraries/STM32F0xx_StdPeriph_Driver
-UTILITIES = $(SDK)/UTILITIES/STM32F072B-Discovery
+UTILITIES = $(SDK)/Utilities/STM32F072B-Discovery
 
 # ----- SYMBOLS ---------------------------------------------------------------
 
