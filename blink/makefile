@@ -25,7 +25,6 @@ SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_4.c
 # Project
 INCLUDE_DIRS += src
 INCLUDE_DIRS += src/config
-SOURCE_FILES += $(wildcard src/*.c)
 SOURCE_FILES += $(wildcard src/*.cpp)
 
 # ----- Libraries -------------------------------------------------------------

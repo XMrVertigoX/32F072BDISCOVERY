@@ -15,7 +15,7 @@ SYMBOLS += STM32F072
 INCLUDE_DIRS += $(CMSIS)/Include
 INCLUDE_DIRS += $(CMSIS)/Device/Include
 SOURCE_FILES += $(CMSIS)/Device/Source/Templates/gcc_ride7/startup_stm32f072.s
-# SOURCE_FILES += $(CMSIS)/Device/Source/Templates/system_stm32f0xx.c
+SOURCE_FILES += $(CMSIS)/Device/Source/Templates/system_stm32f0xx.c
 
 # ----- DRIVER ----------------------------------------------------------------
 
