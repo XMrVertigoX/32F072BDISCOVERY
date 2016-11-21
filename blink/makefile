@@ -34,13 +34,18 @@ SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.
 INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
 SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
 
-# xXx
-INCLUDE_DIRS += ../libs/xXx
+# Libraries
+INCLUDE_DIRS += ../libs
 SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
 SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
 
+# STM32CubeMX
 INCLUDE_DIRS += Inc
 SOURCE_FILES += $(wildcard Src/*.c)
+
+# Application
+INCLUDE_DIRS += App
+SOURCE_FILES += $(wildcard App/*.cpp)
 
 # ----- Libraries -------------------------------------------------------------
 
