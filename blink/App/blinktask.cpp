@@ -5,10 +5,6 @@
 
 #include "blinktask.hpp"
 
-extern "C" {
-#include "blinktask.h"
-}
-
 BlinkTask::BlinkTask() : ArduinoTask(256, 1) {}
 
 BlinkTask::~BlinkTask() {}
