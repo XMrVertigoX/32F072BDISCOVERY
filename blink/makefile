@@ -2,17 +2,9 @@
 
 PROJECT_NAME = blink2
 
-# ----- Directories -----------------------------------------------------------
-
-# CUBEMX = ../libs/STM32Cube_FW_F0_V1.6.0
-
 # ----- Source code------------------------------------------------------------
 
 SYMBOLS += STM32F072xB
-
-# CubeMX (Firmware package)
-# INCLUDE_DIRS += $(CUBEMX)/Drivers/STM32F0xx_HAL_Driver/Inc
-# SOURCE_FILES += $(filter stm32f0xx_ll_%,$(wildcard $(CUBEMX)/Drivers/STM32F0xx_HAL_Driver/Src/*.c))
 
 # CMSIS
 INCLUDE_DIRS += Drivers/CMSIS/Include
@@ -38,18 +30,23 @@ INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0
 SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
 SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
 
-# FreeRTOS (CMSIS OS)
+# FreeRTOS (CMSIS RTOS)
 INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
 SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
+
+# xXx
+INCLUDE_DIRS += ../libs/xXx
+SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
+SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
 
 INCLUDE_DIRS += Inc
 SOURCE_FILES += $(wildcard Src/*.c)
 
 # ----- Libraries -------------------------------------------------------------
 
-# LIBRARY_DIRS += ../libs/STM32Cube_FW_F0_V1.6.0/Drivers/CMSIS/Lib/GCC
+# LIBRARY_DIRS +=
 
-# LIBRARIES += arm_cortexM0l_math
+# LIBRARIES +=
 
 # ----- Flags -----------------------------------------------------------------
 
