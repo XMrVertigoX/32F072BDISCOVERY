@@ -1,43 +1,61 @@
 # ----- Configuration ---------------------------------------------------------
 
-PROJECT_NAME = blink
+PROJECT_NAME = blink2
+
+# ----- Directories -----------------------------------------------------------
+
+# CUBEMX = ../libs/STM32Cube_FW_F0_V1.6.0
 
 # ----- Source code------------------------------------------------------------
 
-include sdk.mk
+SYMBOLS += STM32F072xB
 
-SYMBOLS += NDEBUG
+# CubeMX (Firmware package)
+# INCLUDE_DIRS += $(CUBEMX)/Drivers/STM32F0xx_HAL_Driver/Inc
+# SOURCE_FILES += $(filter stm32f0xx_ll_%,$(wildcard $(CUBEMX)/Drivers/STM32F0xx_HAL_Driver/Src/*.c))
 
-# xXx
-INCLUDE_DIRS += ../libs
-SOURCE_FILES += $(wildcard ../libs/xXx/os/*.cpp)
-SOURCE_FILES += $(wildcard ../libs/xXx/support/*.cpp)
+# CMSIS
+INCLUDE_DIRS += Drivers/CMSIS/Include
+INCLUDE_DIRS += Drivers/CMSIS/Device/ST/STM32F0xx/Include
+SOURCE_FILES += Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/system_stm32f0xx.c
+SOURCE_FILES += Drivers/CMSIS/Device/ST/STM32F0xx/Source/Templates/gcc/startup_stm32f072xb.s
+
+# Driver
+INCLUDE_DIRS += Drivers/STM32F0xx_HAL_Driver/Inc
+SOURCE_FILES += $(wildcard Drivers/STM32F0xx_HAL_Driver/Src/*.c)
 
 # FreeRTOS
-INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/include
-SOURCE_FILES += $(wildcard ../libs/xXx/thirdparty/FreeRTOS/Source/*.c)
+INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/include
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/croutine.c
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/list.c
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/queue.c
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/tasks.c
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/timers.c
 
 # FreeRTOS (Portable)
-INCLUDE_DIRS += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0
-SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
-SOURCE_FILES += ../libs/xXx/thirdparty/FreeRTOS/Source/portable/MemMang/heap_4.c
+INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0/port.c
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/portable/MemMang/heap_4.c
 
-# Project
-INCLUDE_DIRS += src
-INCLUDE_DIRS += src/config
-SOURCE_FILES += $(wildcard src/*.cpp)
+# FreeRTOS (CMSIS OS)
+INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS
+SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c
+
+INCLUDE_DIRS += Inc
+SOURCE_FILES += $(wildcard Src/*.c)
 
 # ----- Libraries -------------------------------------------------------------
 
-# LIBRARIES +=
+# LIBRARY_DIRS += ../libs/STM32Cube_FW_F0_V1.6.0/Drivers/CMSIS/Lib/GCC
+
+# LIBRARIES += arm_cortexM0l_math
 
 # ----- Flags -----------------------------------------------------------------
 
 GCCFLAGS += -march=armv6-m
-GCCFLAGS += -mtune=cortex-m0
+GCCFLAGS += -mtune=cortex-m0plus
 GCCFLAGS += -mthumb
-
-# ASMFLAGS +=
 
 COMMON_CFLAGS += -g
 COMMON_CFLAGS += -Og
@@ -48,7 +66,7 @@ CXXFLAGS += -std=gnu++14
 
 # CPPFLAGS +=
 
-# LDFLAGS +=
+LDFLAGS += -T STM32F072RB_FLASH.ld
 
 # ----- Rules -----------------------------------------------------------------
 
