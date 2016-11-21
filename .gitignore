@@ -1,1 +1,6 @@
 _out/
+
+**/.cproject
+**/.mxproject
+**/.project
+**/.settings
