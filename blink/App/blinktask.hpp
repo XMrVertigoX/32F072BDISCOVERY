@@ -5,12 +5,9 @@ using namespace xXx;
 
 class BlinkTask : public ArduinoTask {
   public:
-    BlinkTask(Queue<int> &queue);
+    BlinkTask();
     ~BlinkTask();
 
     void loop();
     void setup();
-
-  private:
-    Queue<int> &_queue;
 };

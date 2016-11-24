@@ -22,7 +22,7 @@
 
 using namespace xXx;
 
-BlinkTask::BlinkTask(Queue<int> &queue) : ArduinoTask(128, 1), _queue(queue) {}
+BlinkTask::BlinkTask() : ArduinoTask(128, 1) {}
 
 BlinkTask::~BlinkTask() {}
 
