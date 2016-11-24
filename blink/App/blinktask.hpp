@@ -11,8 +11,8 @@ class BlinkTask : public ArduinoTask {
     BlinkTask(Queue<int> &queue);
     virtual ~BlinkTask();
 
-    void setup();
     void loop();
+    void setup();
 
   private:
     Queue<int> &_queue;
