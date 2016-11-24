@@ -1,6 +1,3 @@
-#include <FreeRTOS.h>
-#include <queue.h>
-
 #include <xXx/os/arduinotask.hpp>
 #include <xXx/templates/queue.hpp>
 
