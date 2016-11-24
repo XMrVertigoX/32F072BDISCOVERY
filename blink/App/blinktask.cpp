@@ -1,11 +1,13 @@
 #include <FreeRTOS.h>
+#include <queue.h>
 #include <task.h>
 
 #include <xXx/os/arduinotask.hpp>
+#include <xXx/templates/queue.hpp>
 
 #include "blinktask.hpp"
 
-BlinkTask::BlinkTask() : ArduinoTask(256, 1) {}
+BlinkTask::BlinkTask(Queue<int> &queue) : ArduinoTask(256, 1), _queue(queue) {}
 
 BlinkTask::~BlinkTask() {}
 
