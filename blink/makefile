@@ -40,7 +40,7 @@ SOURCE_FILES += $(wildcard Src/*.c)
 
 # Application
 INCLUDE_DIRS += App
-SOURCE_FILES += $(shell find ./App -type f -name blinktask* -print0)
+SOURCE_FILES += $(wildcard App/*.cpp)
 
 # ----- Libraries -------------------------------------------------------------
 
