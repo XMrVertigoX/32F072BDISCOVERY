@@ -111,12 +111,11 @@ int main(void) {
     defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
     /* USER CODE BEGIN RTOS_THREADS */
-    /* add threads, ... */
     App_createStatic();
     /* USER CODE END RTOS_THREADS */
 
     /* USER CODE BEGIN RTOS_QUEUES */
-    /* add queues, ... */
+
     /* USER CODE END RTOS_QUEUES */
 
     /* Start scheduler */
