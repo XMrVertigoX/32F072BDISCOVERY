@@ -1,5 +1,4 @@
 #include <xXx/os/arduinotask.hpp>
-#include <xXx/templates/queue.hpp>
 
 using namespace xXx;
 
