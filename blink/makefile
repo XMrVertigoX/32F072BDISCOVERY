@@ -18,12 +18,7 @@ SOURCE_FILES += $(wildcard Drivers/STM32F0xx_HAL_Driver/Src/*.c)
 
 # FreeRTOS
 INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/include
-SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/croutine.c
-SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/event_groups.c
-SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/list.c
-SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/queue.c
-SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/tasks.c
-SOURCE_FILES += Middlewares/Third_Party/FreeRTOS/Source/timers.c
+SOURCE_FILES += $(wildcard Middlewares/Third_Party/FreeRTOS/Source/*.c)
 
 # FreeRTOS (Portable)
 INCLUDE_DIRS += Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM0
@@ -45,7 +40,7 @@ SOURCE_FILES += $(wildcard Src/*.c)
 
 # Application
 INCLUDE_DIRS += App
-SOURCE_FILES += $(wildcard App/*.cpp)
+SOURCE_FILES += $(shell find ./App -type f -name blinktask* -print0)
 
 # ----- Libraries -------------------------------------------------------------
 
