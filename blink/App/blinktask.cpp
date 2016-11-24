@@ -7,6 +7,8 @@
 
 #include "blinktask.hpp"
 
+using namespace xXx;
+
 BlinkTask::BlinkTask(Queue<int> &queue) : ArduinoTask(256, 1), _queue(queue) {}
 
 BlinkTask::~BlinkTask() {}

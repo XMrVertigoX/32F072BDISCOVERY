@@ -6,7 +6,7 @@
 using namespace xXx;
 
 extern "C" void App_createStatic(void) {
-    // Static objects
+    // Shared objects
     static Queue<int> queue(10);
 
     // Tasks
