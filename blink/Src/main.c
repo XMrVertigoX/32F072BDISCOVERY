@@ -46,7 +46,7 @@
 #include "stm32f0xx_hal.h"
 
 /* USER CODE BEGIN Includes */
-#include <app.h>
+
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
