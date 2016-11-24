@@ -9,7 +9,7 @@ using namespace xXx;
 class BlinkTask : public ArduinoTask {
   public:
     BlinkTask(Queue<int> &queue);
-    virtual ~BlinkTask();
+    ~BlinkTask();
 
     void loop();
     void setup();
