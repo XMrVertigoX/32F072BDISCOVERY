@@ -8,11 +8,11 @@
 
 #include "blinktask.hpp"
 
-#define LED3_Pin GPIO_PIN_8
+#define LED3_Pin GPIO_PIN_6
 #define LED3_Port GPIOC
-#define LED4_Pin GPIO_PIN_9
+#define LED4_Pin GPIO_PIN_8
 #define LED4_Port GPIOC
-#define LED5_Pin GPIO_PIN_6
+#define LED5_Pin GPIO_PIN_9
 #define LED5_Port GPIOC
 #define LED6_Pin GPIO_PIN_7
 #define LED6_Port GPIOC
@@ -22,7 +22,7 @@
 
 using namespace xXx;
 
-BlinkTask::BlinkTask(Queue<int> &queue) : ArduinoTask(256, 1), _queue(queue) {}
+BlinkTask::BlinkTask(Queue<int> &queue) : ArduinoTask(128, 1), _queue(queue) {}
 
 BlinkTask::~BlinkTask() {}
 
@@ -30,9 +30,15 @@ void BlinkTask::setup() {}
 
 void BlinkTask::loop() {
     HAL_GPIO_TogglePin(LED3_Port, LED3_Pin);
-    HAL_GPIO_TogglePin(LED4_Port, LED4_Pin);
+    vTaskDelay(TICKS2MS(125));
+    HAL_GPIO_TogglePin(LED3_Port, LED3_Pin);
+    HAL_GPIO_TogglePin(LED5_Port, LED5_Pin);
+    vTaskDelay(TICKS2MS(125));
     HAL_GPIO_TogglePin(LED5_Port, LED5_Pin);
     HAL_GPIO_TogglePin(LED6_Port, LED6_Pin);
-
-    vTaskDelay(TICKS2MS(500));
+    vTaskDelay(TICKS2MS(125));
+    HAL_GPIO_TogglePin(LED6_Port, LED6_Pin);
+    HAL_GPIO_TogglePin(LED4_Port, LED4_Pin);
+    vTaskDelay(TICKS2MS(125));
+    HAL_GPIO_TogglePin(LED4_Port, LED4_Pin);
 }
