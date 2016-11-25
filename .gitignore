@@ -1,5 +1,8 @@
 **/_out
 
+# Ctags file
+tags
+
 # CubeMX output for TrueStudio
 **/.cproject
 **/.mxproject
