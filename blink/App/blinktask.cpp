@@ -1,24 +1,12 @@
-#include <stm32f0xx_hal.h>
-
 #include <FreeRTOS.h>
 #include <task.h>
 
 #include <xXx/os/arduinotask.hpp>
-#include <xXx/templates/queue.hpp>
 
 #include "blinktask.hpp"
 
-#define LED3_Pin GPIO_PIN_6
-#define LED3_Port GPIOC
-#define LED4_Pin GPIO_PIN_8
-#define LED4_Port GPIOC
-#define LED5_Pin GPIO_PIN_9
-#define LED5_Port GPIOC
-#define LED6_Pin GPIO_PIN_7
-#define LED6_Port GPIOC
-
-#define TICKS2MS(millis) (millis / portTICK_PERIOD_MS)
-#define MS2TICKS(millis) (millis * portTICK_PERIOD_MS)
+#define TICKS2MS(m) (m / portTICK_PERIOD_MS)
+#define MS2TICKS(t) (t * portTICK_PERIOD_MS)
 
 using namespace xXx;
 
@@ -29,16 +17,24 @@ BlinkTask::~BlinkTask() {}
 void BlinkTask::setup() {}
 
 void BlinkTask::loop() {
-    HAL_GPIO_TogglePin(LED3_Port, LED3_Pin);
+    // _led3.toggle();
+
     vTaskDelay(TICKS2MS(125));
-    HAL_GPIO_TogglePin(LED3_Port, LED3_Pin);
-    HAL_GPIO_TogglePin(LED5_Port, LED5_Pin);
+
+    // _led3.toggle();
+    // _led5.toggle();
+
     vTaskDelay(TICKS2MS(125));
-    HAL_GPIO_TogglePin(LED5_Port, LED5_Pin);
-    HAL_GPIO_TogglePin(LED6_Port, LED6_Pin);
+
+    // _led5.toggle();
+    // _led6.toggle();
+
     vTaskDelay(TICKS2MS(125));
-    HAL_GPIO_TogglePin(LED6_Port, LED6_Pin);
-    HAL_GPIO_TogglePin(LED4_Port, LED4_Pin);
+
+    // _led6.toggle();
+    // _led4.toggle();
+
     vTaskDelay(TICKS2MS(125));
-    HAL_GPIO_TogglePin(LED4_Port, LED4_Pin);
+
+    // _led4.toggle();
 }
