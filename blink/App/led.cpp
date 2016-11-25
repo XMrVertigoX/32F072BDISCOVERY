@@ -2,10 +2,10 @@
 
 #include "led.hpp"
 
-Led::Led(GPIO_TypeDef *port, uint16_t pin) : _port(port), _pin(pin) {}
+Led::Led(LedPin_t ledPin) : _ledPin(ledPin) {}
 
 Led::~Led() {}
 
 void Led::toggle() {
-    HAL_GPIO_TogglePin(_port, _pin);
+    HAL_GPIO_TogglePin(GPIOC, _ledPin);
 }

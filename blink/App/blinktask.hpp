@@ -5,6 +5,8 @@
 
 #include "led.hpp"
 
+#define NUM_LEDS 4
+
 using namespace xXx;
 
 class BlinkTask : public ArduinoTask {
@@ -16,10 +18,7 @@ class BlinkTask : public ArduinoTask {
     void setup();
 
   private:
-    Led _led3(LED3_Port, LED3_Pin);
-    // Led _led4(LED4_Port, LED4_Pin);
-    // Led _led5(LED5_Port, LED5_Pin);
-    // Led _led6(LED6_Port, LED6_Pin);
+    Led _leds[NUM_LEDS];
 };
 
 #endif /* BLINKTASK_HPP_ */
