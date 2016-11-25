@@ -1,7 +1,6 @@
-#include <xXx/templates/queue.hpp>
+#include "blinktask.hpp"
 
 #include "app.h"
-#include "blinktask.hpp"
 
 using namespace xXx;
 
