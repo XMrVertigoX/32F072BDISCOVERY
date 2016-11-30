@@ -50,8 +50,7 @@ SOURCE_FILES += $(wildcard App/*.cpp)
 
 # ----- Flags -----------------------------------------------------------------
 
-GCCFLAGS += -march=armv6-m
-GCCFLAGS += -mtune=cortex-m0plus
+GCCFLAGS += -mcpu=cortex-m0plus
 GCCFLAGS += -mthumb
 
 COMMON_CFLAGS += -g
